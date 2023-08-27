@@ -22,6 +22,8 @@ class Empleados(models.Model):
         managed=False
         db_table= 'empleados'
         
+
+        
     def __str__(self) :
         return self.nombres
     
