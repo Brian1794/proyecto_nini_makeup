@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>nini make-up</title>
+    <link rel="stylesheet" type="text/css" href='{% static "css/style.css" %}'>
+    <link rel="shortcut icon" href='{% static "img/logo.png" %}' type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: #dd7b79;">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mi_pagina' %}" style="color: #dd7b79;">pqrs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'administrador' %}" style="color: #dd7b79;">administrador</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 mx-auto">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar productos"
+                        aria-label="Search">
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+                </form>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            style="color: #dd7b79;">iniciar sesion
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'login' %}">Iniciar sesion</a>
+                            <a class="dropdown-item" href="{% url 'register' %}">Registrarse</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'password_reset' %}">Olvidé mi contraseña</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./" style="color: #dd7b79;">Carrito (<span id="cart-count">0</span>)</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="jumbotron jumbotron-fluid text-center" style="background-color: #dbdedc; min-width: 300px;">
+            <div class="container">
+                <h1 class="display-3" style="color: #dd7b79;">Envía una PQR</h1>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form>
+                    <div class="mb-3">
+                        <label for="nombreInput" class="form-label">Nombres</label>
+                        <input type="text" class="form-control" id="nombreInput" placeholder="Nombres">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellidoInput" class="form-label">Apellidos</label>
+                        <input type="text" class="form-control" id="apellidoInput" placeholder="Apellidos">
+                    </div>
+                    <div class="mb-3">
+                        <label for="correoInput" class="form-label">Correo</label>
+                        <input type="email" class="form-control" id="correoInput" placeholder="Correo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="asuntoSelect" class="form-label">Asunto</label>
+                        <select class="form-select" id="asuntoSelect">
+                            <option value="1">Selecciona una opción</option>
+                            <option value="2">Problemas con el servicio al cliente</option>
+                            <option value="3">Problemas con el envío</option>
+                            <option value="4">Problemas con los productos</option>
+                            <option value="5">Problemas con el sitio web</option>
+                            <option value="6">Problemas con el precio</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="mensajeTextarea" class="form-label">Mensaje</label>
+                        <textarea class="form-control" id="mensajeTextarea" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>
