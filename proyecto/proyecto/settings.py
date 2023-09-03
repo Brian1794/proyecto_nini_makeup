@@ -57,7 +57,7 @@ ROOT_URLCONF = "proyecto.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR, 'templates'],
+        "DIRS": [''],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -82,11 +82,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTION':{'init_command':"Set sql_mode='STRICT_TRANS_TABLES'"},
-        'NAME': 'trimestre5',
+        'NAME': 'usuarios',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
-        'PORT': '3306'
+        'PORT': '8080'
     }
 }
 
@@ -126,8 +126,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'app1/static')]
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'app1/css')]
+
+
 
 
 # Default primary key field type

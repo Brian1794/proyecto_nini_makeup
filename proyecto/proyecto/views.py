@@ -1,30 +1,28 @@
-from datetime import datetime
-from django.http import HttpResponse  
-from django.template  import Template,context
-import datetime
-from django.template.loader import get_template
 from django.shortcuts import render
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from django.contrib.auth.forms import UserChangeForm
-from django.contrib.auth.decorators import login_required
-
-
-
-@login_required
+from django.contrib.auth.hashers import make_password
+from app1.models import Usuarios
 
 def index(request):
     if request.method == 'POST':
-        form = UserChangeForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data['username']
-            messages.success(request, f'Usuario {username} cargado exitosamente !!!')
-        else:
-            messages.error(request, 'Usuario no cargado !!!')
+        nombre = request.POST.get('nombre')
+        apellidos = request.POST.get('apellidos')
+        celular = request.POST.get('celular')
+        email = request.POST.get('email')
+        direccion = request.POST.get('direccion')
+        contraseña = request.POST.get('contraseña')
+
+        # Hashear la contraseña antes de guardarla en la base de datos
+        contraseña_hasheada = make_password(contraseña)
+
+        # Crear un nuevo usuario con los datos proporcionados
+        nuevo_usuario = Usuarios(nombre=nombre, apellidos=apellidos, celular=celular, email=email, direccion=direccion, contraseña=contraseña_hasheada)
+        nuevo_usuario.save()
+
+        messages.success(request, '¡Yei, estás registrado!')
+        return render(request, 'registro.html')
     else:
-        form = UserChangeForm()
-    
-    context = {'form': form}
-    return render(request, "index.html", context)
+        return render(request, 'registro.html')
+
+
 
