@@ -84,9 +84,9 @@ DATABASES = {
         'OPTION':{'init_command':"Set sql_mode='STRICT_TRANS_TABLES'"},
         'NAME': 'usuarios',
         'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '8080'
+        'PASSWORD': 'Z8pabdAfXFFvzoNftVUm',
+        'HOST': 'containers-us-west-179.railway.app',
+        'PORT': '6753'
     }
 }
 
