@@ -15,7 +15,7 @@ class Usuarios(models.Model):
     direccion = models.CharField(max_length=254)
     contraseña = models.CharField(max_length=2505)
     estado = models.CharField(max_length=250)
-
+    created_at = models.CharField(max_length=250)
     class Meta:
         managed = False
         db_table = 'usuarios'
