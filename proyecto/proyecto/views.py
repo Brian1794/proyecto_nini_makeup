@@ -19,7 +19,7 @@ def index(request):
         nuevo_usuario = Usuarios(nombre=nombre, apellidos=apellidos, celular=celular, email=email, direccion=direccion, contraseña=contraseña_hasheada)
         nuevo_usuario.save()
 
-        messages.success(request, '¡ usuario registrado exitosamente!')
+        messages.success(request, '¡usuario registrado exitosamente!')
         return render(request, 'registro.html')
     else:
         return render(request, 'registro.html')
