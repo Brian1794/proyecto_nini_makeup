@@ -22,6 +22,7 @@ def index(request):
         messages.success(request, '¡usuario registrado exitosamente!')
         return render(request, 'registro.html')
     else:
+        messages.success(request, '¡ya estas registrado!')
         return render(request, 'registro.html')
         
 
