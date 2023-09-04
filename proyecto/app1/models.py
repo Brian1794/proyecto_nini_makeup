@@ -13,7 +13,7 @@ class Usuarios(models.Model):
     celular = models.IntegerField()
     email = models.CharField(max_length=254)
     direccion = models.CharField(max_length=254)
-    contraseña = models.CharField(max_length=255)
+    contraseña = models.CharField(max_length=2505)
 
     class Meta:
         managed = False

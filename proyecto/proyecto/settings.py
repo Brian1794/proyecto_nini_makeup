@@ -82,7 +82,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTION':{'init_command':"Set sql_mode='STRICT_TRANS_TABLES'"},
-        'NAME': 'usuarios',
+        'NAME': 'proyecto',
         'USER': 'root',
         'PASSWORD': 'Z8pabdAfXFFvzoNftVUm',
         'HOST': 'containers-us-west-179.railway.app',
@@ -126,7 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'app1/static')]
 
 
 
