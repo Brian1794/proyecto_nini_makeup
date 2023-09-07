@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>crud</title>
+</head>
+<body>
+    
+    <td>
+        <a href="{% url 'form_editar_estudios %'}"><i class="fa-solid fa-pen-to-square" style="color: cadetblue; font-size:22px"></i></a>
+
+        <a href="{% url 'eliminar_estudio' est.idestudios %}"><i class="fa-solid fa-trash-can" style="color: cadetblue; font-size:22px"></i></a>
+    </td>
+
+    <td>
+        <a href="{% url 'form_editar_estudios ' est.idestudios%'}"><i class="fa-solid fa-pen-to-square" style="color: cadetblue; font-size:22px"></i></a>
+
+        <a href="{% url 'eliminar_estudio' est.idestudios %}"><i class="fa-solid fa-trash-can" style="color: cadetblue; font-size:22px"></i></a>
+    </td>
+
+   <form method="post">
+    {% csrf_token %}
+    <!-- {{ form.as_p }} -->
+    {% for campo in formulario %}
+    <p class="form-group">
+        <label for="id_estudios"> {{ campo.label }} </label>
+        <input 
+        type="{{ campo.field.widget.input_type }}"
+        class="form-control"
+        name="{{ campo.name }}"
+        value="{{campo.value | deefault }}"
+        id=""
+        placeholder="{{ campo.label }}"/>
+    </p>
+    {% endfor %}
+    <input type="text" class="btn btn-success" value="create">
+   </form>
+
+</body>
+</html>

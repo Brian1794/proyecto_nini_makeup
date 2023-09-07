@@ -8,14 +8,17 @@
 from django.db import models
 
 class Usuarios(models.Model):
+    id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=254)
     apellidos = models.CharField(max_length=255)
-    celular = models.IntegerField()
+    celular = models.BigIntegerField()  # Cambiado a BigIntegerField
     email = models.CharField(max_length=254)
     direccion = models.CharField(max_length=254)
     contraseña = models.CharField(max_length=2505)
     estado = models.CharField(max_length=250)
-    created_at = models.CharField(max_length=250)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
     class Meta:
         managed = False
         db_table = 'usuarios'
+

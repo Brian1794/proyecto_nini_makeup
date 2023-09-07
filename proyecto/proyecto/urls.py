@@ -25,8 +25,9 @@ from . import views  # Importa las vistas desde la aplicación app1
 
 urlpatterns = [
     
-    path('index/', views.index, name='index'), 
-    path('admin/', admin.site.urls),
     
-]
+    path('admin/', admin.site.urls),
+    path('index/', views.index, name='index'), 
+   
+] 
 

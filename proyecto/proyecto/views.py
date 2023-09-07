@@ -27,3 +27,17 @@ def index(request):
         
 
 
+       # metodo crud para eliminar
+
+def eliminar_estudio(request,id):
+    estudio=estudio.objects.get(idestudios=id)
+    estudio.delete()
+    messages.error(request, '¡¡¡¡registro borrado!!!')
+    return redirect("crud")
+
+    # metodo crud para editar
+
+def form_editar_estudio(request,id):
+    estudio=Estudios.objects.get(idestudios=id)
+    formulario=add_estudios(request.post or None, instance=estudio)
+    return render(request, 'editar_estudio.html', {'formulario':formulario})    
