@@ -20,14 +20,15 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from proyecto.views import index
 from . import views  # Importa las vistas desde la aplicación app1
 
 urlpatterns = [
     
-    
     path('admin/', admin.site.urls),
     path('index/', views.index, name='index'), 
-   
+    path('listar_usuarios/', views.listar_usuarios, name='listar_usuarios'),
+    path('agregar_usuario/', views.agregar_usuario, name='agregar_usuario'),
+    path('form_editar_usuario/', views.form_editar_usuario, name='form_editar_usuario'),
+    path('eliminar_usuario/', views.eliminar_usuario, name='eliminar_usuario'),
 ] 
 

@@ -2,6 +2,11 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from app1.models import Usuarios
+from django.shortcuts import render, redirect, get_object_or_404
+from app1.models import Usuarios
+
+
+# registro de usuarios
 
 def index(request):
     if request.method == 'POST':
@@ -10,13 +15,13 @@ def index(request):
         celular = request.POST.get('celular')
         email = request.POST.get('email')
         direccion = request.POST.get('direccion')
-        contraseña = request.POST.get('contraseña')
+        contrasena = request.POST.get('contrasena')
 
         # Hashear la contraseña antes de guardarla en la base de datos
-        contraseña_hasheada = make_password(contraseña)
+        contrasena_hasheada = make_password(contrasena)
 
         # Crear un nuevo usuario con los datos proporcionados
-        nuevo_usuario = Usuarios(nombre=nombre, apellidos=apellidos, celular=celular, email=email, direccion=direccion, contraseña=contraseña_hasheada)
+        nuevo_usuario = Usuarios(nombre=nombre, apellidos=apellidos, celular=celular, email=email, direccion=direccion, contrasena=contrasena_hasheada)
         nuevo_usuario.save()
 
         messages.success(request, '¡usuario registrado exitosamente!')
@@ -27,17 +32,48 @@ def index(request):
         
 
 
-       # metodo crud para eliminar
+# Vista para listar todos los usuarios
 
-def eliminar_estudio(request,id):
-    estudio=estudio.objects.get(idestudios=id)
-    estudio.delete()
-    messages.error(request, '¡¡¡¡registro borrado!!!')
-    return redirect("crud")
+def listar_usuarios(request):
+    usuarios = Usuarios.objects.all()
+    return render(request, 'listar_usuarios.html', {'usuarios': usuarios})
 
-    # metodo crud para editar
+# Vista para crear un nuevo usuario
 
-def form_editar_estudio(request,id):
-    estudio=Estudios.objects.get(idestudios=id)
-    formulario=add_estudios(request.post or None, instance=estudio)
-    return render(request, 'editar_estudio.html', {'formulario':formulario})    
+def agregar_usuario(request):
+    if request.method == 'POST':
+        formulario = AddUsuariosForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Usuario creado exitosamente')
+            return redirect("listar_usuarios")  # Reemplaza "listar_usuarios" con la URL adecuada
+    else:
+        formulario = AddUsuariosForm()
+    
+    return render(request, 'agregar_usuario.html', {'formulario': formulario})
+
+# Vista para editar un usuario
+
+def form_editar_usuario(request, id):
+    usuario = get_object_or_404(Usuarios, idestudios=id)
+    if request.method == 'POST':
+        formulario = AddUsuariosForm(request.POST, instance=usuario)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Usuario editado exitosamente')
+            return redirect("listar_usuarios")  # Reemplaza "listar_usuarios" con la URL adecuada
+    else:
+        formulario = AddUsuariosForm(instance=usuario)
+    
+    return render(request, 'editar_usuario.html', {'formulario': formulario, 'usuario': usuario})
+
+# Vista para eliminar un usuario
+
+def eliminar_usuario(request, id):
+    usuario = get_object_or_404(Usuarios, idestudios=id)
+    if request.method == 'POST':
+        usuario.delete()
+        messages.success(request, 'Usuario eliminado exitosamente')
+        return redirect("listar_usuarios")  # Reemplaza "listar_usuarios" con la URL adecuada
+    
+    return render(request, 'eliminar_usuario.html', {'usuario': usuario})
