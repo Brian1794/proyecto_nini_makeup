@@ -3,6 +3,17 @@ from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from app1.models import Usuarios
 
+# index
+
+
+def inicio(request):
+    # Otras operaciones si es necesario
+    return render(request, 'index.html')
+
+
+
+# registro
+
 def index(request):
     if request.method == 'POST':
         nombre = request.POST.get('nombre')
@@ -25,5 +36,6 @@ def index(request):
         messages.success(request, '¡Ya estás registrado!')
         return render(request, 'registro.html')
     
+
     
  

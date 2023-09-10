@@ -1,23 +1,26 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
+    <title>Nini Make-up</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>nini makeup</title>
-    <link rel="shortcut icon" href=" ./nin.jpg" type="image/x-">
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/css.css">
-    <link rel="stylesheet" href="./carrito de compras/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'css/css.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
 
+
+</head>
+
+<body>
     <!-- Header -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light mr-5 ">
             <a href="./index.html">
-                <img src="{% static 'img/1.jpg' %}" alt="" srcset="" class="logo">
+                <img src="./img/logo.png" alt="" srcset="" class="logo">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,7 +55,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="./login.html">Iniciar sesion</a>
-                            <a class="dropdown-item" href="./register.html">Registrarse</a>
+                            <a class="dropdown-item" href="">Registrarse</a>
 
 
                         </div>
@@ -67,7 +70,7 @@
         <!-- carrito de compras -->
         <div id="cart-container">
             <div id="cart-icon">
-                <img src="./img/car.png" style="height: 50px; right: 7px;">
+                <img src="{% static 'img/car.png' %}" style="height: 50px; right: 7px;">             
                 <span class="cart-count">0</span>
             </div>
             <div id="cart-sidebar">
@@ -98,8 +101,8 @@
 
     <!-- slider -->
 
-
-
+   
+          
 
 
 
@@ -273,7 +276,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="./carrito de compras/js.js"></script>
+    <script src="{% static 'script/js.js' %}"></script>
 
 </body>
 
