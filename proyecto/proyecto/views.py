@@ -2,7 +2,15 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password,check_password
 from app1.models import Usuarios
+<<<<<<< HEAD
 from app1.forms import UsuariosForm
+=======
+from django.shortcuts import render, redirect, get_object_or_404
+from app1.models import Usuarios
+
+
+# registro de usuarios
+>>>>>>> c348d75c42ef95f039be2ec4ebdc54f9761d9a36
 
 
 # index
@@ -25,17 +33,29 @@ def registro(request):
         direccion = request.POST.get('direccion')
         contrasena = request.POST.get('contrasena')
 
+<<<<<<< HEAD
         # Hash the password before saving it to the database
         contrasena_hasheada = make_password(contrasena)
 
         # Create a new user with the data provided
+=======
+        # Hashear la contraseña antes de guardarla en la base de datos
+        contrasena_hasheada = make_password(contrasena)
+
+        # Crear un nuevo usuario con los datos proporcionados
+>>>>>>> c348d75c42ef95f039be2ec4ebdc54f9761d9a36
         nuevo_usuario = Usuarios(nombre=nombre, apellidos=apellidos, celular=celular, email=email, direccion=direccion, contrasena=contrasena_hasheada)
         nuevo_usuario.save()
 
         messages.success(request, '¡Usuario registrado exitosamente!')
         return render(request, 'registro.html')
     else:
+<<<<<<< HEAD
         messages.success(request, '¡Ya estás registrado!')
+=======
+        
+        messages.success(request, '¡ya estas registrado!')
+>>>>>>> c348d75c42ef95f039be2ec4ebdc54f9761d9a36
         return render(request, 'registro.html')
     
 
@@ -43,6 +63,7 @@ def registro(request):
 #  crud completo 
 
 
+<<<<<<< HEAD
 def lista_usuarios(request):
     usuarios = Usuarios.objects.all()
     return render(request, 'lista_usuarios.html', {'usuarios': usuarios})
@@ -105,3 +126,50 @@ def valida_login(request):
             return render(request, 'login.html')
     
     return render(request, 'login.html')
+=======
+# Vista para listar todos los usuarios
+
+def listar_usuarios(request):
+    usuarios = Usuarios.objects.all()
+    return render(request, 'listar_usuarios.html', {'usuarios': usuarios})
+
+# Vista para crear un nuevo usuario
+
+def agregar_usuario(request):
+    if request.method == 'POST':
+        formulario = AddUsuariosForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Usuario creado exitosamente')
+            return redirect("listar_usuarios")  # Reemplaza "listar_usuarios" con la URL adecuada
+    else:
+        formulario = AddUsuariosForm()
+    
+    return render(request, 'agregar_usuario.html', {'formulario': formulario})
+
+# Vista para editar un usuario
+
+def form_editar_usuario(request, id):
+    usuario = get_object_or_404(Usuarios, idestudios=id)
+    if request.method == 'POST':
+        formulario = AddUsuariosForm(request.POST, instance=usuario)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request, 'Usuario editado exitosamente')
+            return redirect("listar_usuarios")  # Reemplaza "listar_usuarios" con la URL adecuada
+    else:
+        formulario = AddUsuariosForm(instance=usuario)
+    
+    return render(request, 'editar_usuario.html', {'formulario': formulario, 'usuario': usuario})
+
+# Vista para eliminar un usuario
+
+def eliminar_usuario(request, id):
+    usuario = get_object_or_404(Usuarios, idestudios=id)
+    if request.method == 'POST':
+        usuario.delete()
+        messages.success(request, 'Usuario eliminado exitosamente')
+        return redirect("listar_usuarios")  # Reemplaza "listar_usuarios" con la URL adecuada
+    
+    return render(request, 'eliminar_usuario.html', {'usuario': usuario})
+>>>>>>> c348d75c42ef95f039be2ec4ebdc54f9761d9a36
