@@ -37,7 +37,7 @@
                         <a class="nav-link" href="./pqr/pqr.html" style="color: #dd7b79;">pqrs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./administrador/index.html" style="color: #dd7b79;">administrador</a>
+                        <a class="nav-link" href="{% url 'lista_usuarios' %}" style="color: #dd7b79;">administrador</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0 mx-auto">
@@ -54,8 +54,8 @@
                             iniciar sesion
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="./login.html">Iniciar sesion</a>
-                            <a class="dropdown-item" href="">Registrarse</a>
+                            <a class="dropdown-item" href="{% url 'valida_login' %}">Iniciar sesion</a>
+                            <a class="dropdown-item" href="{% url 'registro' %}">Registrarse</a>
 
 
                         </div>
