@@ -14,11 +14,16 @@ class Usuarios(models.Model):
     celular = models.BigIntegerField()  # Cambiado a BigIntegerField
     email = models.CharField(max_length=254)
     direccion = models.CharField(max_length=254)
-    contraseña = models.CharField(max_length=2505)
+    contrasena = models.CharField(max_length=2505)
     estado = models.CharField(max_length=250)
     created_at = models.DateTimeField(auto_now_add=True)
     
     class Meta:
         managed = False
         db_table = 'usuarios'
+
+
+
+
+
 

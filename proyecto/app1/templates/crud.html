@@ -1,41 +1,175 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>crud</title>
+    <title>CRUD</title>
+
+ <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Encabezado */
+    header {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+    }
+
+    /* Contenedor principal */
+    main {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+
+    /* Estilo para los enlaces de editar y eliminar */
+    .edit-delete-links {
+        margin-bottom: 10px;
+    }
+
+    .edit-delete-links a {
+        text-decoration: none;
+        margin-right: 10px;
+    }
+
+    /* Estilo para los íconos */
+    .edit-delete-links i {
+        color: cadetblue;
+        font-size: 22px;
+    }
+
+    /* Estilo para los campos del formulario */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    /* Estilo para el botón de enviar */
+    .btn-success {
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .btn-success:hover {
+        background-color: #45a049;
+    }
+</style>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
 </head>
 <body>
+    <header>
+        <!-- Encabezado si es necesario -->
+        <h1>CRUD</h1>
+    </header>
     
-    <td>
-        <a href="{% url 'form_editar_estudios %'}"><i class="fa-solid fa-pen-to-square" style="color: cadetblue; font-size:22px"></i></a>
+    <main>
+        <!-- Formulario para crear o editar un elemento -->
+        <form method="post">
+            {% csrf_token %}
+            {% for campo in formulario %}
+            <div class="form-group">
+                <label for="{{ campo.name }}">{{ campo.label }}</label>
+                <input 
+                    type="{{ campo.field.widget.input_type }}"
+                    class="form-control"
+                    name="{{ campo.name }}"
+                    value="{{ campo.value|default:'' }}"
+                    id="{{ campo.name }}"
+                    placeholder="{{ campo.label }}"
+                />
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-success">Create / Update</button>
+        </form>
 
-        <a href="{% url 'eliminar_estudio' est.idestudios %}"><i class="fa-solid fa-trash-can" style="color: cadetblue; font-size:22px"></i></a>
-    </td>
+        <!-- Lista de elementos existentes -->
+        <ul>
+            {% for elemento in elementos %}
+                <li>
+                    {{ elemento.nombre }}
+                    <span class="edit-delete-links">
+                        <a href="{% url 'editar_elemento' elemento.id %}">
+                            <i class="fa-solid fa-pen-to-square" style="color: cadetblue; font-size: 22px"></i>
+                        </a>
+                        <a href="{% url 'eliminar_elemento' elemento.id %}">
+                            <i class="fa-solid fa-trash-can" style="color: cadetblue; font-size: 22px"></i>
+                        </a>
+                    </span>
+                </li>
+            {% endfor %}
+        </ul>
+    </main>
 
-    <td>
-        <a href="{% url 'form_editar_estudios ' est.idestudios%'}"><i class="fa-solid fa-pen-to-square" style="color: cadetblue; font-size:22px"></i></a>
+    <!-- ... Tu código HTML existente ... -->
 
-        <a href="{% url 'eliminar_estudio' est.idestudios %}"><i class="fa-solid fa-trash-can" style="color: cadetblue; font-size:22px"></i></a>
-    </td>
+<main>
+    <!-- Formulario para crear o editar un usuario -->
+    <form method="post">
+        {% csrf_token %}
+        {% for campo in form %}
+        <div class="form-group">
+            <label for="{{ campo.name }}">{{ campo.label }}</label>
+            <input 
+                type="{{ campo.field.widget.input_type }}"
+                class="form-control"
+                name="{{ campo.name }}"
+                value="{{ campo.value|default:'' }}"
+                id="{{ campo.name }}"
+                placeholder="{{ campo.label }}"
+            />
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-success">Create / Update</button>
+    </form>
 
-   <form method="post">
-    {% csrf_token %}
-    <!-- {{ form.as_p }} -->
-    {% for campo in formulario %}
-    <p class="form-group">
-        <label for="id_estudios"> {{ campo.label }} </label>
-        <input 
-        type="{{ campo.field.widget.input_type }}"
-        class="form-control"
-        name="{{ campo.name }}"
-        value="{{campo.value | deefault }}"
-        id=""
-        placeholder="{{ campo.label }}"/>
-    </p>
-    {% endfor %}
-    <input type="text" class="btn btn-success" value="create">
-   </form>
+    <!-- Lista de usuarios existentes -->
+    <ul>
+        {% for usuario in usuarios %}
+            <li>
+                {{ usuario.nombre }}
+                <span class="edit-delete-links">
+                    <a href="{% url 'editar_usuario' usuario.id %}">
+                        <i class="fa-solid fa-pen-to-square" style="color: cadetblue; font-size: 22px"></i>
+                    </a>
+                    <a href="{% url 'eliminar_usuario' usuario.id %}">
+                        <i class="fa-solid fa-trash-can" style="color: cadetblue; font-size: 22px"></i>
+                    </a>
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
+</main>
+
+<!-- ... Otro código HTML si es necesario ... -->
 
 </body>
 </html>
+

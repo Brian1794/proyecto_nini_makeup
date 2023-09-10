@@ -10,34 +10,20 @@ def index(request):
         celular = request.POST.get('celular')
         email = request.POST.get('email')
         direccion = request.POST.get('direccion')
-        contraseña = request.POST.get('contraseña')
+        contrasena = request.POST.get('contrasena')
 
-        # Hashear la contraseña antes de guardarla en la base de datos
-        contraseña_hasheada = make_password(contraseña)
+        # Hash the password before saving it to the database
+        contrasena_hasheada = make_password(contrasena)
 
-        # Crear un nuevo usuario con los datos proporcionados
-        nuevo_usuario = Usuarios(nombre=nombre, apellidos=apellidos, celular=celular, email=email, direccion=direccion, contraseña=contraseña_hasheada)
+        # Create a new user with the data provided
+        nuevo_usuario = Usuarios(nombre=nombre, apellidos=apellidos, celular=celular, email=email, direccion=direccion, contrasena=contrasena_hasheada)
         nuevo_usuario.save()
 
-        messages.success(request, '¡usuario registrado exitosamente!')
+        messages.success(request, '¡Usuario registrado exitosamente!')
         return render(request, 'registro.html')
     else:
-        messages.success(request, '¡ya estas registrado!')
+        messages.success(request, '¡Ya estás registrado!')
         return render(request, 'registro.html')
-        
-
-
-       # metodo crud para eliminar
-
-def eliminar_estudio(request,id):
-    estudio=estudio.objects.get(idestudios=id)
-    estudio.delete()
-    messages.error(request, '¡¡¡¡registro borrado!!!')
-    return redirect("crud")
-
-    # metodo crud para editar
-
-def form_editar_estudio(request,id):
-    estudio=Estudios.objects.get(idestudios=id)
-    formulario=add_estudios(request.post or None, instance=estudio)
-    return render(request, 'editar_estudio.html', {'formulario':formulario})    
+    
+    
+ 
